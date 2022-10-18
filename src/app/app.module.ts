@@ -11,7 +11,21 @@ import { AdmincontentComponent } from './admin/admincontent/admincontent.compone
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminhomeComponent } from './admin/admincontent/adminhome/adminhome.component'
+import { RouterModule, Routes } from '@angular/router';
+import { EmployeeManagementComponent } from './admin/admincontent/employee-management/employee-management.component';
 
+const appRoutes:Routes =[
+  {path:"", component: LoginComponent},
+  {path:"admin",component:AdminComponent, 
+  children:[
+    {path:'',component:AdmincontentComponent, 
+       children:[
+        {path:'',component:AdminhomeComponent},
+        {path:'empmanage', component:EmployeeManagementComponent}
+       ]}
+  ]}
+];
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +34,15 @@ import { AdminhomeComponent } from './admin/admincontent/adminhome/adminhome.com
     SidebarComponent,
     HeaderComponent,
     AdmincontentComponent,
-    AdminhomeComponent
+    AdminhomeComponent,
+    EmployeeManagementComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
