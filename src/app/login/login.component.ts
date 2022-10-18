@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,9 +20,13 @@ export class LoginComponent implements OnInit {
       
  });
 
-  constructor() { }
+  constructor( private router:Router) { }
 
   ngOnInit(): void {
   }
-
+  
+  checkLogin(){
+    this.loginForm.reset();
+     this.router.navigate(['/admin']);
+  }
 }
